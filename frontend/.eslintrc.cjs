@@ -10,6 +10,9 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js'],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: [`${__dirname}/tsconfig.json`],
+  },
   plugins: ['react', 'react-refresh', 'unused-imports'],
   rules: {
     'react-refresh/only-export-components': [
