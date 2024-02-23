@@ -8,7 +8,15 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
   ],
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js'],
+  parserOptions: {
+    project: [`${__dirname}/tsconfig.json`],
+  },
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'tailwind.config.js',
+    'vite.config.ts',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-refresh', 'unused-imports'],
   rules: {

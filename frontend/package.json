@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",
     "lucide-react": "^0.336.0",
@@ -35,6 +36,7 @@
     "postcss": "^8.4.35",
     "prettier": "^3.2.5",
     "tailwindcss": "^3.4.1",
+    "telegram-webapps": "^7.0.0",
     "typescript": "^5.2.2",
     "vite": "^5.1.4"
   }
