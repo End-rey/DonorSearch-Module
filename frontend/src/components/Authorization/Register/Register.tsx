@@ -1,19 +1,23 @@
 import { Button } from '@/components/ui/button.tsx';
-import { RegisterEmail } from '@/components/Authorization/Register/RegisterEmail/RegisterEmail.tsx';
-import { RegisterPhone } from '@/components/Authorization/Register/RegisterPhone/RegisterPhone.tsx';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
-import { RegisterCode } from '@/components/Authorization/Register/RegisterCode/RegisterCode.tsx';
+import { useNavigate } from 'react-router-dom';
 
 export const Register = () => {
+  const navigate = useNavigate();
   return (
     <div className='flex flex-col items-center'>
-      <RegisterCode />
-      <RegisterEmail />
-      <RegisterPhone />
-      <Button variant='link' className='p-0 h-3 mb-5'>
+      <Button
+        variant='link'
+        className='p-0 h-3 mb-5 text-links'
+        onClick={() => navigate('email')}
+      >
         Регистрация по Email
       </Button>
-      <Button variant='link' className='p-0 h-3'>
+      <Button
+        variant='link'
+        className='p-0 h-3 text-links'
+        onClick={() => navigate('phone')}
+      >
         Регистрация по номеру телефона
       </Button>
       <SupportLine />
