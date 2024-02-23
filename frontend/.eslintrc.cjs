@@ -18,6 +18,9 @@ module.exports = {
     'vite.config.ts',
   ],
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    project: [`${__dirname}/tsconfig.json`],
+  },
   plugins: ['react', 'react-refresh', 'unused-imports'],
   rules: {
     'react-refresh/only-export-components': [
