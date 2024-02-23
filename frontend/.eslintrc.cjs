@@ -8,6 +8,9 @@ module.exports = {
     'plugin:react-hooks/recommended',
     'plugin:react/jsx-runtime',
   ],
+  parserOptions: {
+    project: [`${__dirname}/tsconfig.json`],
+  },
   ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js'],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-refresh', 'unused-imports'],
