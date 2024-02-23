@@ -11,7 +11,12 @@ module.exports = {
   parserOptions: {
     project: [`${__dirname}/tsconfig.json`],
   },
-  ignorePatterns: ['dist', '.eslintrc.cjs', 'tailwind.config.js'],
+  ignorePatterns: [
+    'dist',
+    '.eslintrc.cjs',
+    'tailwind.config.js',
+    'vite.config.ts',
+  ],
   parser: '@typescript-eslint/parser',
   plugins: ['react', 'react-refresh', 'unused-imports'],
   rules: {
