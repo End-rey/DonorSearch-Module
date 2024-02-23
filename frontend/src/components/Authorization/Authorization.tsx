@@ -1,5 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Login } from '@/components/Authorization/Login/Login.tsx';
+import { Register } from '@/components/Authorization/Register/Register.tsx';
 
 export const Authorization = () => {
   return (
@@ -13,10 +14,12 @@ export const Authorization = () => {
           Регистрация
         </TabsTrigger>
       </TabsList>
-      <TabsContent value='account' className='px-4'>
+      <TabsContent value='account'>
         <Login />
       </TabsContent>
-      <TabsContent value='password'>Change your password here.</TabsContent>
+      <TabsContent value='password'>
+        <Register />
+      </TabsContent>
     </Tabs>
   );
 };

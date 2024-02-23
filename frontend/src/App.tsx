@@ -1,8 +1,8 @@
 
-import { Profile } from '@/components/Profile/Profile.tsx';
+// import { Profile } from '@/components/Profile/Profile.tsx';
 import { Authorization } from '@/components/Authorization/Authorization.tsx';
 import { useEffect } from 'react';
-import { Button } from './components/ui/button';
+// import { Button } from './components/ui/button';
         
 const tg = Telegram.WebApp;
 
@@ -11,16 +11,15 @@ function App() {
     tg.ready();
   }, []);
 
-  const onClose = () => {
-    tg.close();
-  };
+  // const onClose = () => {
+  //   tg.close();
+  // };
 
   return (
     <>
-      <div>Hello!</div>
-      <Profile />
+      {/*<Profile />*/}
       <Authorization />
-      <Button onClick={() => onClose()}>Close</Button>
+      {/*<Button onClick={() => onClose()}>Close</Button>*/}
     </>
   );
 }
