@@ -2,7 +2,7 @@ import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 export const Profile = () => {
   return (
-    <div className='flex flex-col justify-center content-center items-left gap-4 max-w-[420px]'>
+    <div className='flex flex-col justify-center content-center items-left gap-4'>
       <h2 className='text-3xl text-left font-semibold w-[100%]'>Профиль</h2>
       <div className='rounded-3xl bg-white flex flex-col p-4 w-[100%]'>
         <div className='flex gap-4  items-center'>
@@ -24,10 +24,10 @@ export const Profile = () => {
         </p>
       </div>
       <div className='flex justify-between'>
-        <Button variant={'whiteEdition'} className='w-[180px] h-[180px]'>
+        <Button variant={'whiteEdition'} className='w-[150px] h-[150px]'>
           Добавить донацию
         </Button>
-        <Button variant={'whiteEdition'} className='w-[180px] h-[180px]'>
+        <Button variant={'whiteEdition'} className='w-[150px] h-[150px]'>
           Напомнить о донации
         </Button>
       </div>
