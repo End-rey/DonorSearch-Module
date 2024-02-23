@@ -34,6 +34,7 @@ export const Login = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    Telegram.WebApp.sendData(JSON.stringify(values));
     navigate('/DonorSearch-Module/profile');
   }
   return (
@@ -41,7 +42,7 @@ export const Login = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 flex flex-col items-center'
+          className='flex flex-col items-center space-y-4'
         >
           <FormField
             control={form.control}
@@ -69,7 +70,7 @@ export const Login = () => {
               </FormItem>
             )}
           />
-          <Button type='submit' className='bg-redMain w-20'>
+          <Button type='submit' className='w-20 bg-redMain'>
             Войти
           </Button>
         </form>

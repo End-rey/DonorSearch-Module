@@ -27,7 +27,7 @@ const DonationType = ({ field }: { field: fieldProp<'donationType'> }) => {
                 <FormItem key={item.id}>
                   <FormControl>
                     <RadioGroupItem
-                      className='group peer w-[1px] opacity-0'
+                      className='peer w-[1px] opacity-0'
                       value={item.id}
                     />
                   </FormControl>
