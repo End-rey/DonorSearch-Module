@@ -32,5 +32,9 @@ module.exports = {
     'react/jsx-uses-react': 'warn',
     'react/jsx-uses-vars': 'warn',
     'no-console': 'warn',
+    '@typescript-eslint/no-unsafe-assignment': 'off',
+    '@typescript-eslint/no-unsafe-call': 'off',
+    '@typescript-eslint/no-unsafe-member-access': 'off',
+    'react/prop-types': 0,
   },
 };
