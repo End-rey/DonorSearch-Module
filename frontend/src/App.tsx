@@ -16,12 +16,12 @@ function App() {
   // };
 
   return (
-    <>
+    <div className='max-w-[320px] mx-auto mt-[150px]'>
       {/*<Profile />*/}
       <Authorization />
       <Donation />
       {/*<Button onClick={() => onClose()}>Close</Button>*/}
-    </>
+    </div>
   );
 }
 

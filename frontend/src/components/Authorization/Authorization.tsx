@@ -4,8 +4,8 @@ import { Register } from '@/components/Authorization/Register/Register.tsx';
 
 export const Authorization = () => {
   return (
-    <Tabs defaultValue='account' className='w-[400px] bg-transparent'>
-      <TabsList className='justify-start'>
+    <Tabs defaultValue='account' className='bg-white rounded-3xl py-3 px-2'>
+      <TabsList className='justify-start bg-transparent mb-3'>
         <TabsTrigger value='account' className='text-2xl'>
           Вход
         </TabsTrigger>
