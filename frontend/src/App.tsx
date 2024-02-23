@@ -1,12 +1,27 @@
-// import { Profile } from '@/components/Profile/Profile.tsx';
+
+import { Profile } from '@/components/Profile/Profile.tsx';
 import { Authorization } from '@/components/Authorization/Authorization.tsx';
+import { useEffect } from 'react';
+import { Button } from './components/ui/button';
+        
+const tg = Telegram.WebApp;
 
 function App() {
+  useEffect(() => {
+    tg.ready();
+  }, []);
+
+  const onClose = () => {
+    tg.close();
+  };
+
   return (
-    <div className='bg-#F6F7F8 p-6'>
-      {/*<Profile />*/}
+    <>
+      <div>Hello!</div>
+      <Profile />
       <Authorization />
-    </div>
+      <Button onClick={() => onClose()}>Close</Button>
+    </>
   );
 }
 
