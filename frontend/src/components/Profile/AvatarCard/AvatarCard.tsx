@@ -3,12 +3,8 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/components/ui/avatar.tsx';
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from '@/components/ui/accordion';
+
+
 import { Button } from '@/components/ui/button.tsx';
 export const AvatarCard = () => {
   return (
