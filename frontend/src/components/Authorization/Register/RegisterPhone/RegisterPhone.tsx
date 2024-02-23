@@ -14,6 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
+import { useNavigate } from 'react-router-dom';
+import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
 
 const formSchema = z.object({
   phone: z.string().min(1, {
@@ -27,6 +29,7 @@ const formSchema = z.object({
   }),
 });
 export const RegisterPhone = () => {
+  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,6 +44,7 @@ export const RegisterPhone = () => {
   }
   return (
     <>
+      <BackButton />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
@@ -103,7 +107,11 @@ export const RegisterPhone = () => {
               </FormItem>
             )}
           />
-          <Button type='submit' className='bg-redMain w-[100%]'>
+          <Button
+            type='submit'
+            className='bg-redMain w-[100%]'
+            onClick={() => navigate('pin')}
+          >
             Зарегистрироваться
           </Button>
         </form>
