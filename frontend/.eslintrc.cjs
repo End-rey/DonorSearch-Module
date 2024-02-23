@@ -16,6 +16,7 @@ module.exports = {
     '.eslintrc.cjs',
     'tailwind.config.js',
     'vite.config.ts',
+    'postcss.config.js',
   ],
   parser: '@typescript-eslint/parser',
   parserOptions: {
@@ -39,5 +40,6 @@ module.exports = {
     '@typescript-eslint/no-unsafe-return': 'off',
     '@typescript-eslint/no-redundant-type-constituents': 'off',
     'react/prop-types': 0,
+    '@typescript-eslint/no-misused-promises': 'off',
   },
 };

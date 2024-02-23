@@ -14,12 +14,15 @@ import {
 import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
 import { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
 
 const formSchema = z.object({
   pin: z.string(),
 });
 
 export const RegisterCode = () => {
+  const navigate = useNavigate();
   const [seconds, setSeconds] = useState(60);
 
   useEffect(() => {
@@ -41,9 +44,11 @@ export const RegisterCode = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
+    navigate('/DonorSearch-Module/profile');
   }
   return (
     <>
+      <BackButton />
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

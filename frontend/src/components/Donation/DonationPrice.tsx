@@ -1,3 +1,4 @@
+import RadioButtonCard from '@/components/CustomUI/RadioButtonCard';
 import { fieldProp } from '@/components/Donation/Donation';
 import {
   FormControl,
@@ -5,31 +6,28 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { RadioGroup } from '@/components/ui/radio-group';
 
 const DonationPrice = ({ field }: { field: fieldProp<'donationPrice'> }) => {
   return (
     <FormItem>
       <FormLabel>Тип донации</FormLabel>
       <FormControl>
-        <RadioGroup
-          onValueChange={field.onChange}
-          defaultValue={field.value}
-          className='flex flex-col space-y-1'
-        >
-          <FormItem className='flex items-center space-x-3 space-y-0'>
-            <FormControl>
-              <RadioGroupItem value='free' />
-            </FormControl>
-            <FormLabel className='font-normal'>Цельная кровь</FormLabel>
-          </FormItem>
-
-          <FormItem className='flex items-center space-x-3 space-y-0'>
-            <FormControl>
-              <RadioGroupItem value='money' />
-            </FormControl>
-            <FormLabel className='font-normal'>Плазма</FormLabel>
-          </FormItem>
+        <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
+          <RadioButtonCard
+            header={'Безвозмездно'}
+            text={
+              'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
+            }
+            value='free'
+          />
+          <RadioButtonCard
+            header={'Платно'}
+            text={
+              'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
+            }
+            value='money'
+          />
         </RadioGroup>
       </FormControl>
       <FormMessage />

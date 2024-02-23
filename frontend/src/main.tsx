@@ -1,10 +1,39 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import App from './App.tsx'
-import './index.css'
+import AuthorizationPage from '@/pages/AuthorizationPage';
+import DonationPage from '@/pages/DonationPage';
+import ProfilePage from '@/pages/ProfilePage';
+import RegisterEmailCodePage from '@/pages/RegisterEmailCodePage';
+import RegisterEmailPage from '@/pages/RegisterEmailPage';
+import RegisterPhonePage from '@/pages/RegisterPhonePage';
+import RegisterPhoneCodePage from '@/pages/RegisterPhonePage copy';
+import Root from '@/pages/Root';
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import './index.css';
+
+const router = createBrowserRouter(
+  [
+    {
+      path: '/',
+      element: <Root />,
+      children: [
+        { path: '/', element: <DonationPage /> },
+        { path: '/profile', element: <ProfilePage /> },
+        { path: '/auth', element: <AuthorizationPage /> },
+        { path: '/auth/phone', element: <RegisterPhonePage /> },
+        { path: '/auth/email', element: <RegisterEmailPage /> },
+        { path: '/auth/email/pin', element: <RegisterEmailCodePage /> },
+        { path: '/auth/phone/pin', element: <RegisterPhoneCodePage /> },
+      ],
+    },
+  ],
+  {
+    basename: '/DonorSearch-Module',
+  }
+);
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-)
+    <RouterProvider router={router} />
+  </React.StrictMode>
+);
