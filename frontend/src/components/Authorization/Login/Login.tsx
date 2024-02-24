@@ -12,14 +12,15 @@ import {
   FormMessage,
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
-import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
 import { useNavigate } from 'react-router-dom';
 
 const formSchema = z.object({
-  username: z.string().min(2, {
+  username: z.string().min(1, {
     message: 'Введите ваше имя пользователя',
   }),
-  password: z.string(),
+  password: z.string().min(1, {
+    message: 'Введите пароль',
+  }),
 });
 
 export const Login = () => {
@@ -70,12 +71,11 @@ export const Login = () => {
               </FormItem>
             )}
           />
-          <Button type='submit' className='w-20 bg-redMain'>
+          <Button type='submit' className='w-20'>
             Войти
           </Button>
         </form>
       </Form>
-      <SupportLine />
     </>
   );
 };

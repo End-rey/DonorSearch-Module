@@ -1,26 +1,16 @@
 import { Button } from '@/components/ui/button.tsx';
-import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 export const Register = () => {
   const navigate = useNavigate();
   return (
     <div className='flex flex-col items-center'>
-      <Button
-        variant='link'
-        className='p-0 h-3 mb-5 text-links'
-        onClick={() => navigate('email')}
-      >
-        Регистрация по Email
+      <Button asChild variant='link' className='mb-5 h-3 p-0 text-links'>
+        <Link to={'/auth/email'}>Регистрация по Email</Link>
       </Button>
-      <Button
-        variant='link'
-        className='p-0 h-3 text-links'
-        onClick={() => navigate('phone')}
-      >
-        Регистрация по номеру телефона
+      <Button asChild variant='link' className='h-3 p-0 text-links'>
+        <Link to={'/auth/phone'}>Регистрация по номеру телефона</Link>
       </Button>
-      <SupportLine />
     </div>
   );
 };
