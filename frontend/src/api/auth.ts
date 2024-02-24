@@ -2,17 +2,13 @@ interface userRegData {
   email: string;
   password: string;
   first_name: string;
-  tag: string;
-}
-
-interface userRegData {
-  username: string;
-  password: string;
+  action: string;
 }
 
 interface userLoginData {
   username: string;
   password: string;
+  action: string;
 }
 
 interface confirmEmailData {
@@ -46,13 +42,9 @@ interface setPasswordData {
   password: string;
 }
 
-async function register(data: userRegData) {
-  const response = await (
-    await fetch('', { body: JSON.stringify(data) })
-  ).json();
-  return response;
+export function login(data: userLoginData) {
+  Telegram.WebApp.sendData(JSON.stringify(data));
 }
-
-// export function login(data: userLoginData) {
-//   tg.sendData(JSON.stringify(data));
-// }
+export function registration(data: userRegData) {
+  Telegram.WebApp.sendData(JSON.stringify(data));
+}
