@@ -20,7 +20,7 @@ function App() {
   // };
 
   return (
-    <div className='max-w-[320px] mx-auto mt-[150px]'>
+    <div className='mx-auto mt-[80px] max-w-[320px]'>
       <Routes>
         <Route path='/DonorSearch-Module' element={<Donation />} />
         <Route path='/DonorSearch-Module/profile' element={<Profile />} />
