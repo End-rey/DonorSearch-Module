@@ -31,7 +31,7 @@ const DonationType = ({ field }: { field: fieldProp<'donationType'> }) => {
                       value={item.id}
                     />
                   </FormControl>
-                  <FormLabel className='flex  w-36 cursor-pointer items-center justify-center space-y-0  rounded-lg p-2 font-normal peer-aria-checked:bg-primary'>
+                  <FormLabel className='flex  w-36 cursor-pointer items-center justify-center space-y-0  rounded-lg p-2 font-normal peer-aria-checked:bg-primary peer-aria-checked:text-primary-foreground'>
                     {item.name}
                   </FormLabel>
                 </FormItem>
