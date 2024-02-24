@@ -28,8 +28,8 @@ async def register_user(session: AsyncSession, dict: dict):
     return await session.execute(select(User).where(User.name == dict['username'])).id
     
 async def login_user(session: AsyncSession, dict: dict):
-    user = await session.execute(select(User).where(User.name == dict['username'])).first()
-    
+    user = await session.execute(select(User).where(User.name == dict['username']))
+    user = user.scalar()
     if user and user.password == hashlib.sha256(dict['password'].encode()).hexdigest():
         return user
 
