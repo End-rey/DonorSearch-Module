@@ -102,11 +102,7 @@ export const RegisterEmail = () => {
               </FormItem>
             )}
           />
-          <Button
-            type='submit'
-            className='w-[100%]'
-            onClick={() => navigate('pin')}
-          >
+          <Button type='submit' className='w-[100%]'>
             Зарегистрироваться
           </Button>
         </form>
