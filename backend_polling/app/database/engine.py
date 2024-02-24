@@ -1,10 +1,7 @@
-import os
 from sqlalchemy.ext.asyncio import create_async_engine, AsyncSession, async_sessionmaker
-from config import DbConfig
-from sshtunnel import SSHTunnelForwarder
 
-
-from database.models import Base
+from app.config import DbConfig
+from app.database.models import Base
 
 class DB:
     def __init__(self, config: DbConfig):
