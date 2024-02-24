@@ -1,5 +1,11 @@
 .env
+
 .idea/*
+
 venv
+
 __pycache__
+
 .vscode
+
+ngrok.exe
