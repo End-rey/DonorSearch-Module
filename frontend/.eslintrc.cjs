@@ -41,5 +41,6 @@ module.exports = {
     '@typescript-eslint/no-redundant-type-constituents': 'off',
     'react/prop-types': 0,
     '@typescript-eslint/no-misused-promises': 'off',
+    '@typescript-eslint/no-explicit-any': 'warn',
   },
 };
