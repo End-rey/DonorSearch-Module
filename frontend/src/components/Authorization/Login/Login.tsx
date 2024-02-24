@@ -34,9 +34,7 @@ export const Login = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    Telegram.WebApp.sendData(JSON.stringify(values));
-    navigate('/profile');
+    login({ ...values, action: 'login' });
   }
   return (
     <>

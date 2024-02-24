@@ -24,7 +24,7 @@ const formSchema = z.object({
   password: z.string().min(1, {
     message: 'Поле обязательно к заполнению',
   }),
-  username: z.string().min(1, {
+  first_name: z.string().min(1, {
     message: 'Поле обязательно к заполнению',
   }),
 });
@@ -35,12 +35,12 @@ export const RegisterEmail = () => {
     defaultValues: {
       email: '',
       password: '',
-      username: '',
+      first_name: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    registration({ ...values, action: 'register' });
   }
   return (
     <>
@@ -87,15 +87,15 @@ export const RegisterEmail = () => {
           />
           <FormField
             control={form.control}
-            name='username'
+            name='first_name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Имя пользователя
+                  Имя
                   <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='Имя пользователя' {...field} />
+                  <Input placeholder='Имя' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
