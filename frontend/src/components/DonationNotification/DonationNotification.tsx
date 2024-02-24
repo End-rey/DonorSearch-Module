@@ -19,9 +19,7 @@ export type fieldProp<
     | 'donationPrice'
     | 'donationPlace'
     | 'donationCity'
-    | 'donationCenter'
-    | 'donationCertificateDate'
-    | 'donationCertificate',
+    | 'donationCenter',
 > = ControllerRenderProps<
   {
     donationType: 'blood' | 'plasma' | 'trombs' | 'erits' | 'granuls';
@@ -30,8 +28,6 @@ export type fieldProp<
     donationPlace: 'station' | 'event';
     donationCity: string;
     donationCenter: string | undefined;
-    donationCertificateDate: 'today' | 'then';
-    donationCertificate: any;
   },
   FieldName
 >;
@@ -52,22 +48,12 @@ const formSchema = z
       required_error: 'Выберите город сдачи',
     }),
     donationCenter: z.string().or(z.undefined()),
-    donationCertificateDate: z.enum(['today', 'then'], {
-      required_error: 'Выберите дату загрузки справки',
-    }),
-    donationCertificate: z.any().or(z.undefined()),
   })
   .refine(
     (schema) => schema.donationPlace === 'event' || schema.donationCenter,
     { message: 'Выберите центр сдачи', path: ['donationCenter'] }
-  )
-  .refine(
-    (schema) =>
-      schema.donationCertificateDate === 'then' ||
-      schema.donationCertificate?.length > 0,
-    { message: 'Приложите справку', path: ['donationCertificate'] }
   );
-const Donation = () => {
+const DonationNotification = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -79,12 +65,11 @@ const Donation = () => {
     console.log(values);
   }
   const donationPlace = form.watch('donationPlace');
-  const donationCertificateDate = form.watch('donationCertificateDate');
 
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
-        <h1 className='my-7 text-2xl font-bold'>Добавление донации</h1>
+        <h1 className='my-7 text-2xl font-bold'>Напоминание о донации</h1>
         <div className='my-5'>
           <FormField
             control={form.control}
@@ -131,28 +116,12 @@ const Donation = () => {
             />
           </div>
         )}
-        <div className='my-5'>
-          <FormField
-            control={form.control}
-            name='donationCertificateDate'
-            render={({ field }) => <DonationCertificateDate field={field} />}
-          />
-        </div>
-        {donationCertificateDate === 'today' && (
-          <div className='my-5'>
-            <FormField
-              control={form.control}
-              name='donationCertificate'
-              render={({ field }) => <DonationCertificate field={field} />}
-            />
-          </div>
-        )}
         <Button className='w-full' type='submit'>
-          Принять
+          Напомнить о донации
         </Button>
         {/* {Object.values(form.formState.errors).length === 0 && (
           <div className=' my-5 rounded-md bg-green-300 p-10 text-center opacity-50'>
-            Донация успешно сохранена!
+            Напоминание о донации добавлено!
           </div>
         )} */}
       </form>
@@ -160,4 +129,4 @@ const Donation = () => {
   );
 };
 
-export default Donation;
+export default DonationNotification;

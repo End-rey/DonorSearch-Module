@@ -10,14 +10,18 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
+import ErrorPage from '@/pages/ErrorPage';
+import DonationNotificationPage from '@/pages/DonationNotificationPage';
 
 const router = createBrowserRouter(
   [
     {
       path: '/',
       element: <Root />,
+      errorElement: <ErrorPage />,
       children: [
         { path: '/', element: <DonationPage /> },
+        { path: '/notification', element: <DonationNotificationPage /> },
         { path: '/profile', element: <ProfilePage /> },
         { path: '/auth', element: <AuthorizationPage /> },
         { path: '/auth/phone', element: <RegisterPhonePage /> },
