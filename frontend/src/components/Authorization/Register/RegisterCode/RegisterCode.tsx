@@ -54,7 +54,7 @@ export const RegisterCode = () => {
           onSubmit={form.handleSubmit(onSubmit)}
           className='w-[100%] space-y-4'
         >
-          <h3 className='text-2xl font-medium text-dark'>Подтверждение</h3>
+          <h3 className='text-2xl font-medium'>Подтверждение</h3>
           <FormField
             control={form.control}
             name='pin'
@@ -83,13 +83,13 @@ export const RegisterCode = () => {
               onClick={() => {
                 setSeconds(60);
               }}
-              variant='whiteEdition'
+              variant='default'
               className='w-[100%] bg-transparent text-links'
             >
               Выслать код повторно
             </Button>
           )}
-          <Button type='submit' className='w-[100%] bg-redMain'>
+          <Button type='submit' className='w-[100%]'>
             Войти в личный кабинет
           </Button>
         </form>

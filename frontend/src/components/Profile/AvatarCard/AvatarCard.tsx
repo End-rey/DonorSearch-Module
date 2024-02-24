@@ -36,7 +36,7 @@ export const AvatarCard = () => {
       <Accordion type='single' collapsible className='w-[100%]'>
         <AccordionItem value='item-1'>
           <div className='items-left flex w-[100%] flex-col content-center justify-center gap-4 border-0 pb-2'>
-            <div className='flex flex-col rounded-3xl bg-white p-3'>
+            <div className='flex flex-col rounded-3xl p-3'>
               <div className='flex items-center gap-4'>
                 <div className='flex flex-shrink-0 flex-col items-center'>
                   <Avatar className='w-[60px]'>
@@ -84,8 +84,8 @@ export const AvatarCard = () => {
                 ''
               ) : (
                 <Button
-                  variant={'whiteEdition'}
-                  className='mt-4 rounded-xl bg-redMain text-base font-semibold text-white hover:bg-redMain hover:text-white'
+                  variant={'default'}
+                  className='mt-4 rounded-xl text-base font-semibold'
                 >
                   Добавить донацию
                 </Button>
@@ -106,7 +106,7 @@ export const AvatarCard = () => {
             </div>
           </div>
           <AccordionContent>
-            <div className='mt-2 flex flex-col items-center rounded-3xl bg-white'>
+            <div className='mt-2 flex flex-col items-center rounded-3xl'>
               <p className='w-[200px] text-center font-medium'>
                 Здесь будут отображаться ваши донации
               </p>

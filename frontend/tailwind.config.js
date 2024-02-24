@@ -18,6 +18,11 @@ module.exports = {
     },
     extend: {
       // colors: {
+      // potentialDonor: '#FDFCD2',
+      // experienceDonor: '#DBCEFF',
+      // regularDonor: '#A3F6FB',
+      // legendaryDonor: '#5429CC',
+      // irrepressibleDonor: '#B499FF',
       //   redMain: '#F63F3E',
       //   links: '#5338FF',
       //   dark: '#38333F',
@@ -70,6 +75,12 @@ module.exports = {
       //   },
       // },
       colors: {
+        potentialDonor: '#FDFCD2',
+        experienceDonor: '#DBCEFF',
+        regularDonor: '#A3F6FB',
+        legendaryDonor: '#5429CC',
+        irrepressibleDonor: '#B499FF',
+        acceptGreen: '#25C175',
         redMain: '#F63F3E',
         links: '#5338FF',
         dark: '#38333F',

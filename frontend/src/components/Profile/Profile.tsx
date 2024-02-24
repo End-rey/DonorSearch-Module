@@ -7,6 +7,7 @@ import {
 import { AvatarCard } from '@/components/Profile/AvatarCard/AvatarCard.tsx';
 import { DonationSpawn } from '@/components/Profile/DonationSpawn/DonationSpawn.tsx';
 import { MyDonation } from '@/components/Profile/MyDonation/MyDonation.tsx';
+import { WhereTurn } from '@/components/Profile/WhereTurn/WhereTurn.tsx';
 
 export const Profile = () => {
   return (
@@ -18,11 +19,11 @@ export const Profile = () => {
         <TabsTrigger value='profile' className='text-sm'>
           Мой профиль
         </TabsTrigger>
-        <div className='border-r-1 h-[20px] w-[1px] bg-dark'></div>
+        <div className='border-r-1 h-[20px] w-[1px]'></div>
         <TabsTrigger value='place' className='text-sm'>
           Где сдать
         </TabsTrigger>
-        <div className='border-r-1 h-[20px] w-[1px] bg-dark'></div>
+        <div className='border-r-1 h-[20px] w-[1px]'></div>
         <TabsTrigger value='settings' className='text-sm'>
           Настройки
         </TabsTrigger>
@@ -32,7 +33,9 @@ export const Profile = () => {
         <DonationSpawn />
         <MyDonation />
       </TabsContent>
-      <TabsContent value='place'>Где сдать</TabsContent>
+      <TabsContent value='place'>
+        <WhereTurn />
+      </TabsContent>
       <TabsContent value='settings'>Настройки</TabsContent>
     </Tabs>
   );

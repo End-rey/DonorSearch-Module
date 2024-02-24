@@ -48,9 +48,9 @@ export const RegisterPhone = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 w-[100%]'
+          className='w-[100%] space-y-4'
         >
-          <h3 className='text-2xl font-medium text-dark'>
+          <h3 className='text-2xl font-medium'>
             Регистрация по номеру телефона
           </h3>
           <FormField
@@ -59,7 +59,7 @@ export const RegisterPhone = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Номер телефона<span className='text-redMain text-sm'>*</span>
+                  Номер телефона<span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -78,7 +78,7 @@ export const RegisterPhone = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Пароль<span className='text-redMain text-sm'>*</span>
+                  Пароль<span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input type={'password'} placeholder='Пароль' {...field} />
@@ -98,7 +98,7 @@ export const RegisterPhone = () => {
               <FormItem>
                 <FormLabel>
                   Имя пользователя
-                  <span className='text-redMain text-sm'>*</span>
+                  <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input placeholder='Имя пользователя' {...field} />
@@ -109,7 +109,7 @@ export const RegisterPhone = () => {
           />
           <Button
             type='submit'
-            className='bg-redMain w-[100%]'
+            className='w-[100%]'
             onClick={() => navigate('pin')}
           >
             Зарегистрироваться
