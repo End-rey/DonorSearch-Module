@@ -8,6 +8,7 @@ import { AvatarCard } from '@/components/Profile/AvatarCard/AvatarCard.tsx';
 import { DonationSpawn } from '@/components/Profile/DonationSpawn/DonationSpawn.tsx';
 import { MyDonation } from '@/components/Profile/MyDonation/MyDonation.tsx';
 import { WhereTurn } from '@/components/Profile/WhereTurn/WhereTurn.tsx';
+import ChangeProfile from '@/components/Profile/ChangeProfile/ChangeProfile';
 
 export const Profile = () => {
   return (
@@ -36,7 +37,10 @@ export const Profile = () => {
       <TabsContent value='place'>
         <WhereTurn />
       </TabsContent>
-      <TabsContent value='settings'>Настройки</TabsContent>
+      <TabsContent value='settings'>
+        <ChangeProfile />
+      </TabsContent>
+
     </Tabs>
   );
 };

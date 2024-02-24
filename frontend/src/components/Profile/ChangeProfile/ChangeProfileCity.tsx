@@ -1,4 +1,4 @@
-import { fieldProp } from '@/components/Donation/Donation';
+import { fieldProp } from '@/components/Profile/ChangeProfile/ChangeProfile';
 import { Button } from '@/components/ui/button';
 import {
   CommandEmpty,
@@ -20,7 +20,6 @@ import {
 } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 import { Check, ChevronsUpDown } from 'lucide-react';
-
 const cities = [
   {
     value: 'Msc',
@@ -31,11 +30,12 @@ const cities = [
     label: 'Санкт-Петербург',
   },
 ];
-const DonationCity = ({
+
+const ChangeProfileCity = ({
   field,
   form,
 }: {
-  field: fieldProp<'donationCity'>;
+  field: fieldProp<'city'>;
   form: any;
 }) => {
   return (
@@ -90,4 +90,4 @@ const DonationCity = ({
   );
 };
 
-export default DonationCity;
+export default ChangeProfileCity;

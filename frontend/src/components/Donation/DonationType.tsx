@@ -18,20 +18,17 @@ const DonationType = ({ field }: { field: fieldProp<'donationType'> }) => {
   ];
   return (
     <FormItem>
-      <FormLabel>Тип донации</FormLabel>
+      <FormLabel>Выберите тип донации</FormLabel>
       <FormControl>
         <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
           <ScrollArea>
             <div className='flex space-x-3'>
               {types.map((item) => (
-                <FormItem key={item.id}>
+                <FormItem className='flex items-center' key={item.id}>
                   <FormControl>
-                    <RadioGroupItem
-                      className='peer w-[1px] opacity-0'
-                      value={item.id}
-                    />
+                    <RadioGroupItem className='peer hidden' value={item.id} />
                   </FormControl>
-                  <FormLabel className='flex  w-36 cursor-pointer items-center justify-center space-y-0  rounded-lg p-2 font-normal peer-aria-checked:bg-primary peer-aria-checked:text-primary-foreground'>
+                  <FormLabel className='flex h-full cursor-pointer items-center rounded-lg px-10 py-2 ring-1 ring-border peer-aria-checked:bg-primary peer-aria-checked:text-primary-foreground'>
                     {item.name}
                   </FormLabel>
                 </FormItem>
