@@ -21,9 +21,9 @@ module.exports = {
         redMain: '#F63F3E',
         links: '#5338FF',
         dark: '#38333F',
-        border: 'hsl(var(--border))',
-        input: 'hsl(var(--input))',
-        ring: 'hsl(var(--ring))',
+        border: 'var(--tg-theme-section-header-text-color)',
+        input: 'var(--tg-theme-section-header-text-color)',
+        ring: 'var(--tg-theme-hint-color)',
         background: 'var(--tg-theme-bg-color)',
         foreground: 'var(--tg-theme-text-color)',
         keyframes: {
@@ -45,28 +45,28 @@ module.exports = {
           foreground: 'var(--tg-theme-button-text-color)',
         },
         secondary: {
-          DEFAULT: 'var(--tg-theme-secondary-bg-color)',
-          foreground: 'var(--tg-theme-button-text-color)',
+          DEFAULT: 'var(--tg-theme-button-text-color)',
+          foreground: 'var(--tg-theme-button-color)',
         },
         destructive: {
           DEFAULT: 'var(--tg-theme-destructive-text-color)',
           foreground: 'var(--tg-theme-text-color)',
         },
         muted: {
-          DEFAULT: 'hsl(var(--muted))',
-          foreground: 'hsl(var(--muted-foreground))',
+          DEFAULT: 'var(--tg-theme-secondary-bg-color)',
+          foreground: 'var(--tg-theme-subtitle-text-color)',
         },
         accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
+          DEFAULT: 'var(--tg-theme-button-text-color)',
+          foreground: 'var(--tg-theme-accent-text-color)',
         },
         popover: {
-          DEFAULT: 'hsl(var(--popover))',
-          foreground: 'hsl(var(--popover-foreground))',
+          DEFAULT: 'var(--tg-theme-section-bg-color)',
+          foreground: 'var(--tg-theme-section-header-text-color)',
         },
         card: {
-          DEFAULT: 'hsl(var(--card))',
-          foreground: 'hsl(var(--card-foreground))',
+          DEFAULT: 'var(--tg-theme-section-bg-color)',
+          foreground: 'var(--tg-theme-section-header-text-color)',
         },
       },
       // colors: {
