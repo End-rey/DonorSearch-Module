@@ -14,6 +14,8 @@ import { Input } from '@/components/ui/input';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { ControllerRenderProps, useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { Textarea } from '@/components/ui/textarea';
+import { Camera } from 'lucide-react';
 
 export type fieldProp<
   FieldName extends
@@ -59,8 +61,8 @@ const formSchema = z.object({
   sex: z.enum(['male', 'female'], {
     required_error: 'Укажите пол',
   }),
-  // about: z.string().or(z.undefined()),
-  // avatar: z.any().or(z.undefined()),
+  about: z.string().or(z.undefined()),
+  avatar: z.any().or(z.undefined()),
 });
 
 const ChangeProfile = () => {
@@ -76,6 +78,27 @@ const ChangeProfile = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)}>
         <h1 className='my-7 text-2xl font-bold'>Персональные данные</h1>
+        <div className='mb-5'>
+          <FormField
+            control={form.control}
+            name='avatar'
+            render={({ field }) => (
+              <FormItem className='rounded border p-3'>
+                <div className='flex flex-col items-center'>
+                  <Camera className='h-[25px] w-[25px]' />
+                  <p className='text-sm font-semibold'>
+                    Перетащите изображение сюда
+                  </p>
+                  <p className='text-sm font-semibold'>или</p>
+                </div>
+                <FormControl>
+                  <Input id='picture' placeholder={''} type='file' {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <div className='my-5'>
           <FormField
             control={form.control}
@@ -143,7 +166,6 @@ const ChangeProfile = () => {
             render={({ field }) => <ChangeProfileDatebirth field={field} />}
           />
         </div>
-
         <div className='my-5'>
           <FormField
             control={form.control}
@@ -153,14 +175,32 @@ const ChangeProfile = () => {
             )}
           />
         </div>
-        <div className='my-5'>
+        <div className='mt-5'>
           <FormField
             control={form.control}
             name='sex'
             render={({ field }) => <ChangeProfileSex field={field} />}
           />
         </div>
-
+        <div className='mb-5'>
+          <FormField
+            control={form.control}
+            name='about'
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Username</FormLabel>
+                <FormControl>
+                  <Textarea
+                    className='my-0'
+                    placeholder='Расскажите интересное о себе'
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
         <Button className='w-full' type='submit'>
           Принять
         </Button>
