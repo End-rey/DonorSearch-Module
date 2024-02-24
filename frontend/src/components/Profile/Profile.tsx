@@ -7,6 +7,7 @@ import {
 import { AvatarCard } from '@/components/Profile/AvatarCard/AvatarCard.tsx';
 import { DonationSpawn } from '@/components/Profile/DonationSpawn/DonationSpawn.tsx';
 import { MyDonation } from '@/components/Profile/MyDonation/MyDonation.tsx';
+import ChangeProfile from '@/components/Profile/ChangeProfile/ChangeProfile';
 
 export const Profile = () => {
   return (
@@ -33,7 +34,9 @@ export const Profile = () => {
         <MyDonation />
       </TabsContent>
       <TabsContent value='place'>Где сдать</TabsContent>
-      <TabsContent value='settings'>Настройки</TabsContent>
+      <TabsContent value='settings'>
+        <ChangeProfile />
+      </TabsContent>
     </Tabs>
   );
 };
