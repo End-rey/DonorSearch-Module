@@ -31,13 +31,13 @@ const WhereTurnCard = () => {
     resolver: zodResolver(FormSchema),
   });
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      description: (
-        <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
-          <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
+    // toast({
+    //   description: (
+    //     <pre className='mt-2 w-[340px] rounded-md bg-slate-950 p-4'>
+    //       <code className='text-white'>{JSON.stringify(data, null, 2)}</code>
+    //     </pre>
+    //   ),
+    // });
   }
 
   return (
