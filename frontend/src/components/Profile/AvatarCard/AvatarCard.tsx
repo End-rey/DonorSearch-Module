@@ -3,6 +3,7 @@ import {
   AvatarFallback,
   AvatarImage,
 } from '@/components/ui/avatar.tsx';
+
 import {
   Accordion,
   AccordionContent,
@@ -19,6 +20,7 @@ import Leukocyt from '@/assets/icons/leukocytes-icons.svg';
 import { ChevronRight, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import * as React from 'react';
+
 import { Button } from '@/components/ui/button.tsx';
 export const AvatarCard = () => {
   const [isOpen, setIsOpen] = useState(false);
