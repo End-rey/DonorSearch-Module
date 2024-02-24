@@ -48,3 +48,7 @@ export function login(data: userLoginData) {
 export function registration(data: userRegData) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
+
+export function donation(data: any) {
+  Telegram.WebApp.sendData(JSON.stringify(data));
+}
