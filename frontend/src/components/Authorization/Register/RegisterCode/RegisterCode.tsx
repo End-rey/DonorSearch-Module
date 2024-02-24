@@ -44,7 +44,7 @@ export const RegisterCode = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
-    navigate('/DonorSearch-Module/profile');
+    navigate('/profile');
   }
   return (
     <>
@@ -52,7 +52,7 @@ export const RegisterCode = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 w-[100%]'
+          className='w-[100%] space-y-4'
         >
           <h3 className='text-2xl font-medium text-dark'>Подтверждение</h3>
           <FormField
@@ -61,7 +61,7 @@ export const RegisterCode = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Email-код<span className='text-redMain text-sm'>*</span>
+                  Email-код<span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input
@@ -75,7 +75,7 @@ export const RegisterCode = () => {
             )}
           />
           {seconds !== 0 ? (
-            <p className='text-links text-sm text-center'>
+            <p className='text-center text-sm text-links'>
               Выслать код повторно через {seconds} сек.
             </p>
           ) : (
@@ -84,12 +84,12 @@ export const RegisterCode = () => {
                 setSeconds(60);
               }}
               variant='whiteEdition'
-              className='bg-transparent text-links w-[100%]'
+              className='w-[100%] bg-transparent text-links'
             >
               Выслать код повторно
             </Button>
           )}
-          <Button type='submit' className='bg-redMain w-[100%]'>
+          <Button type='submit' className='w-[100%] bg-redMain'>
             Войти в личный кабинет
           </Button>
         </form>
