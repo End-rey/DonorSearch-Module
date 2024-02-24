@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
 import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
+import { registration } from '@/api/auth';
 
 const formSchema = z.object({
   email: z.string().min(1, {

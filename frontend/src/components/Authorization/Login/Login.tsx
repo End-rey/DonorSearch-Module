@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { useNavigate } from 'react-router-dom';
+import { login } from '@/api/auth';
 
 const formSchema = z.object({
   username: z.string().min(1, {

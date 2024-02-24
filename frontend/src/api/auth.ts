@@ -42,9 +42,9 @@ interface setPasswordData {
   password: string;
 }
 
-function login(data: userLoginData) {
+export function login(data: userLoginData) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
-function registration(data: userRegData) {
+export function registration(data: userRegData) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
