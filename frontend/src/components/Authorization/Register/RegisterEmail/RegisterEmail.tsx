@@ -48,18 +48,16 @@ export const RegisterEmail = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='space-y-4 w-[100%]'
+          className='w-[100%] space-y-4'
         >
-          <h3 className='text-2xl font-medium text-dark'>
-            Регистрация по Email
-          </h3>
+          <h3 className='text-2xl font-medium'>Регистрация по Email</h3>
           <FormField
             control={form.control}
             name='email'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Email<span className='text-redMain text-sm'>*</span>
+                  Email<span className='text-sm'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input placeholder='Email' {...field} />
@@ -74,7 +72,7 @@ export const RegisterEmail = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Пароль<span className='text-redMain text-sm'>*</span>
+                  Пароль<span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input type={'password'} placeholder='Пароль' {...field} />
@@ -94,7 +92,7 @@ export const RegisterEmail = () => {
               <FormItem>
                 <FormLabel>
                   Имя пользователя
-                  <span className='text-redMain text-sm'>*</span>
+                  <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
                   <Input placeholder='Имя пользователя' {...field} />
@@ -105,7 +103,7 @@ export const RegisterEmail = () => {
           />
           <Button
             type='submit'
-            className='bg-redMain w-[100%]'
+            className='w-[100%]'
             onClick={() => navigate('pin')}
           >
             Зарегистрироваться

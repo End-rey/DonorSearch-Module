@@ -12,9 +12,9 @@ import DonationRefCard from '@/components/Profile/MyDonation/DonationRefCard/Don
 export const MyDonation = () => {
   return (
     <div>
-      <h2 className='text-2xl font-medium text-dark'>Мои донации</h2>
-      <div className='flex  w-full items-center justify-center rounded-3xl bg-white px-4 py-4'>
-        <Button className='w-full rounded-xl bg-redMain  text-base font-semibold text-white hover:bg-redMain hover:text-white'>
+      <h2 className='text-2xl font-medium'>Мои донации</h2>
+      <div className='flex  w-full items-center justify-center rounded-3xl px-4 py-4'>
+        <Button className='w-full rounded-xl text-base font-semibold'>
           Добавить донацию
         </Button>
       </div>
@@ -30,11 +30,9 @@ export const MyDonation = () => {
             <DonationRefCard />
           </CarouselItem>
           <CarouselItem>
-            <div className='flex w-full flex-col items-center justify-center rounded-3xl bg-white px-4 py-10'>
-              <p className='mb-4 text-xl font-bold text-dark'>
-                Добавить донацию
-              </p>
-              <Button className='w-full rounded-xl bg-redMain  text-base font-semibold text-white hover:bg-redMain hover:text-white'>
+            <div className='flex w-full flex-col items-center justify-center rounded-3xl px-4 py-10'>
+              <p className='mb-4 text-xl font-bold'>Добавить донацию</p>
+              <Button className='w-full rounded-xl  text-base font-semibold'>
                 Загрузить справку
               </Button>
             </div>

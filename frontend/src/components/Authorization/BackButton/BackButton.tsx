@@ -6,8 +6,8 @@ export const BackButton = () => {
   const navigate = useNavigate();
   return (
     <Button
-      variant={'whiteEdition'}
-      className='bg-transparent py-2 pr-3 pl-0'
+      variant={'ghost'}
+      className='bg-transparent py-2 pl-0 pr-3'
       onClick={() => {
         navigate(-1);
       }}
