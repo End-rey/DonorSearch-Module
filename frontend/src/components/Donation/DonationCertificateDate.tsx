@@ -6,31 +6,35 @@ import {
   FormLabel,
   FormMessage,
 } from '@/components/ui/form';
-import { RadioGroup } from '@/components/ui/radio-group';
+import { RadioGroup } from '@radix-ui/react-radio-group';
 
-const DonationPrice = ({ field }: { field: fieldProp<'donationPrice'> }) => {
+const DonationCertificateDate = ({
+  field,
+}: {
+  field: fieldProp<'donationCertificateDate'>;
+}) => {
   return (
     <FormItem>
-      <FormLabel>Тип донации</FormLabel>
+      <FormLabel>Справка</FormLabel>
       <FormControl>
         <RadioGroup
-          className='space-y-2'
+          className='space-y-4'
           onValueChange={field.onChange}
           defaultValue={field.value}
         >
           <RadioButtonCard
-            header={'Безвозмездно'}
+            header={'Загрузить сейчас'}
             text={
               'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
             }
-            value='free'
+            value='today'
           />
           <RadioButtonCard
-            header={'Платно'}
+            header={'Загрузить потом'}
             text={
               'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
             }
-            value='money'
+            value='then'
           />
         </RadioGroup>
       </FormControl>
@@ -39,4 +43,4 @@ const DonationPrice = ({ field }: { field: fieldProp<'donationPrice'> }) => {
   );
 };
 
-export default DonationPrice;
+export default DonationCertificateDate;

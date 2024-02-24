@@ -9,6 +9,8 @@ import DonationPlace from '@/components/Donation/DonationPlace';
 import DonationCity from '@/components/Donation/DonationCity';
 import DonationCenter from '@/components/Donation/DonationCenter';
 import DonationCertificate from '@/components/Donation/DonationCertificate';
+import DonationCertificateDate from '@/components/Donation/DonationCertificateDate';
+import { Button } from '@/components/ui/button';
 
 export type fieldProp<
   FieldName extends
@@ -17,7 +19,9 @@ export type fieldProp<
     | 'donationPrice'
     | 'donationPlace'
     | 'donationCity'
-    | 'donationCenter',
+    | 'donationCenter'
+    | 'donationCertificateDate'
+    | 'donationCertificate',
 > = ControllerRenderProps<
   {
     donationType: 'blood' | 'plasma' | 'trombs' | 'erits' | 'granuls';
@@ -25,9 +29,9 @@ export type fieldProp<
     donationPrice: 'free' | 'money';
     donationPlace: 'station' | 'event';
     donationCity: string;
-    donationCenter: string;
+    donationCenter: string | undefined;
     donationCertificateDate: 'today' | 'then';
-    donationCertificate: string;
+    donationCertificate: any;
   },
   FieldName
 >;
@@ -47,22 +51,21 @@ const formSchema = z
     donationCity: z.string({
       required_error: 'Выберите город сдачи',
     }),
-    donationCenter: z.string(),
+    donationCenter: z.string().or(z.undefined()),
     donationCertificateDate: z.enum(['today', 'then'], {
       required_error: 'Выберите дату загрузки справки',
     }),
-    donationCertificate: z.string(),
+    donationCertificate: z.any().or(z.undefined()),
   })
   .refine(
-    (schema) =>
-      schema.donationPlace !== 'station' || schema.donationCenter.length > 0,
+    (schema) => schema.donationPlace === 'event' || schema.donationCenter,
     { message: 'Выберите центр сдачи', path: ['donationCenter'] }
   )
   .refine(
     (schema) =>
-      schema.donationCertificateDate !== 'then' ||
-      schema.donationCertificate.length > 0,
-    { message: 'Выберите справку', path: ['donationCertificate'] }
+      schema.donationCertificateDate === 'then' ||
+      schema.donationCertificate?.length > 0,
+    { message: 'Приложите справку', path: ['donationCertificate'] }
   );
 const Donation = () => {
   const form = useForm<z.infer<typeof formSchema>>({
@@ -75,10 +78,12 @@ const Donation = () => {
   function onSubmit(values: z.infer<typeof formSchema>) {
     console.log(values);
   }
+  const donationPlace = form.watch('donationPlace');
+  const donationCertificateDate = form.watch('donationCertificateDate');
 
   return (
     <Form {...form}>
-      <form>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
         <FormField
           control={form.control}
           name='donationType'
@@ -97,23 +102,33 @@ const Donation = () => {
         <FormField
           control={form.control}
           name='donationPlace'
-          render={({ field }) => <DonationPlace />}
+          render={({ field }) => <DonationPlace field={field} />}
         />
         <FormField
           control={form.control}
           name='donationCity'
-          render={({ field }) => <DonationCity />}
+          render={({ field }) => <DonationCity field={field} form={form} />}
         />
+        {donationPlace === 'station' && (
+          <FormField
+            control={form.control}
+            name='donationCenter'
+            render={({ field }) => <DonationCenter field={field} form={form} />}
+          />
+        )}
         <FormField
           control={form.control}
-          name='donationCenter'
-          render={({ field }) => <DonationCenter />}
+          name='donationCertificateDate'
+          render={({ field }) => <DonationCertificateDate field={field} />}
         />
-        <FormField
-          control={form.control}
-          name='donationCertificate'
-          render={({ field }) => <DonationCertificate />}
-        />
+        {donationCertificateDate === 'today' && (
+          <FormField
+            control={form.control}
+            name='donationCertificate'
+            render={({ field }) => <DonationCertificate field={field} />}
+          />
+        )}
+        <Button type='submit'>Принять</Button>
       </form>
     </Form>
   );
