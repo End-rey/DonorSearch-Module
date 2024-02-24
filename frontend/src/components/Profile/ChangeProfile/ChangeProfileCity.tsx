@@ -69,7 +69,7 @@ const ChangeProfileCity = ({
                   value={city.label}
                   key={city.value}
                   onSelect={() => {
-                    form.setValue('donationCity', city.value);
+                    form.setValue('city', city.value);
                   }}
                 >
                   <Check

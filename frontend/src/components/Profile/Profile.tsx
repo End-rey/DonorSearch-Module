@@ -40,7 +40,6 @@ export const Profile = () => {
       <TabsContent value='settings'>
         <ChangeProfile />
       </TabsContent>
-
     </Tabs>
   );
 };
