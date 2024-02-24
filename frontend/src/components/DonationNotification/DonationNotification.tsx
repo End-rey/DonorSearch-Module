@@ -11,6 +11,7 @@ import DonationCenter from '@/components/Donation/DonationCenter';
 import DonationCertificate from '@/components/Donation/DonationCertificate';
 import DonationCertificateDate from '@/components/Donation/DonationCertificateDate';
 import { Button } from '@/components/ui/button';
+import { notification } from '@/api/auth';
 
 export type fieldProp<
   FieldName extends
@@ -62,7 +63,7 @@ const DonationNotification = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    notification(values);
   }
   const donationPlace = form.watch('donationPlace');
 

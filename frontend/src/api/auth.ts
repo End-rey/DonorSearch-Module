@@ -52,3 +52,6 @@ export function registration(data: userRegData) {
 export function donation(data: any) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
+export function notification(data: any) {
+  Telegram.WebApp.sendData(JSON.stringify(data));
+}
