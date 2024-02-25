@@ -6,54 +6,42 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
 from sqlalchemy.ext.asyncio import AsyncSession
+from app.common.AuthUser import AuthUser
 
 from app.database.users.user_orm_handlers import login_user, register_user
-from app.keyboards.reply import get_reply_keyboard
+from app.filters.auth_filter import isAuth
+from app.common.keyboards import keyboard_profile, keyboard_login_register
 
-class UnauthorizedUser(StatesGroup):
-    authorization = State()
+auth_user = AuthUser()
 
 start_router = Router()
-web_app_auth = types.WebAppInfo(
-    url="https://end-rey.github.io/DonorSearch-Module/auth")
 
-web_up_profile = types.WebAppInfo(
-    url="https://end-rey.github.io/DonorSearch-Module/profile"
-)
-web_up_donation = types.WebAppInfo(
-    url="https://end-rey.github.io/DonorSearch-Module/"
-)
-
-keyboard_login_reister = get_reply_keyboard(
-    "Вход / Регистрация", web_app={0: web_app_auth}, sizes=(1,))
-
-keyboard_profile = get_reply_keyboard("Профиль", "Список донаций", web_app={0: web_up_profile, 1: web_up_donation}, sizes=(2,))
-
-@start_router.message(CommandStart(), StateFilter(None))
-async def command_start_handler(message: types.Message, state: FSMContext) -> None:
-    await message.answer(f"Привет, {hbold(message.from_user.full_name)}!", reply_markup=keyboard_login_reister)
-    await state.set_state(UnauthorizedUser.authorization)
+@start_router.message(CommandStart(), isAuth())
+async def command_start_handler(message: types.Message) -> None:
+    await message.answer(f"Ты уже вошел, {auth_user.user_id}!", reply_markup=keyboard_profile)
 
 
-@start_router.message(F.content_type == "web_app_data", UnauthorizedUser.authorization)
-async def webapp_data_handler(message: types.Message, session: AsyncSession, state: FSMContext) -> None:
+@start_router.message(CommandStart())
+async def command_start_without_handler(message: types.Message) -> None:
+    await message.answer(f"Зарегистрируйся или войди в свой аккаунт!", reply_markup=keyboard_login_register)
+
+
+@start_router.message(F.content_type == "web_app_data", ~isAuth())
+async def webapp_auth_handler(message: types.Message, session: AsyncSession) -> None:
     data = json.loads(message.web_app_data.data)
     if data['action'] == 'login':
         user = await login_user(session=session, dict=data)
         if user:
-            await message.answer("Добро пожаловать!", reply_markup=keyboard_profile)
-            await state.clear()
+            auth_user.user_id = user.id
+            await message.answer(f"Добро пожаловать, {auth_user.user_id}!", reply_markup=keyboard_profile)
         else:
-            await message.answer("Неверные данные!", reply_markup=keyboard_login_reister)
+            await message.answer("Неверные данные!", reply_markup=keyboard_login_register)
     elif data['action'] == 'register':
         user = await register_user(session=session, dict=data)
         if user:
-            await message.answer("Регистрация прошла успешно!", reply_markup=keyboard_login_reister)
+            await message.answer("Регистрация прошла успешно!", reply_markup=keyboard_login_register)
         else:
-            await message.answer("Пользователь с таким именем уже существует!", reply_markup=keyboard_login_reister)
+            await message.answer("Пользователь с таким именем уже существует!", reply_markup=keyboard_login_register)
+    else:
+        await message.answer("Что-то пошло не так =(, повторите еще раз", reply_markup=keyboard_login_register)
         
-        
-@start_router.message(F.content_type == "web_app_data")
-async def donation_handler(message: types.Message) -> None:
-    data = json.loads(message.web_app_data.data)
-    await message.answer(f"Молодец, будешь сдавать {data['donationType']}!", reply_markup=keyboard_profile)

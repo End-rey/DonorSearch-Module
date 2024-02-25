@@ -5,11 +5,6 @@ user_private_router = Router()
 
 list_of_commands = ["menu", "site", "user", "needs_stations"]
 
-@user_private_router.message(Command("menu"))
-async def menu_handler(message: types.Message) -> None:
-    await message.answer("Menu")
-    
-
 @user_private_router.message()
 async def echo_handler(message: types.Message) -> None:
     try:
