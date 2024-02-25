@@ -21,6 +21,8 @@ VALUES ('Пенза', 6);
 INSERT INTO city
 VALUES ('Красноярск', 7);
 INSERT INTO city
+VALUES ('Екатеринбург', 10);
+INSERT INTO city
 VALUES ('Брест', 13);
 INSERT INTO city
 VALUES ('Витебск', 14);
