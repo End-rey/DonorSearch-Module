@@ -1,28 +1,12 @@
-INSERT INTO city
-VALUES ('Москва', 0);
-INSERT INTO city
-VALUES ('Санкт-Петербург', 1);
-INSERT INTO city
-VALUES ('Долгопрудный', 2);
-INSERT INTO city
-VALUES ('Луга', 3);
-INSERT INTO city
-VALUES ('Кингисепп', 3);
-INSERT INTO city
-VALUES ('Волхов', 3);
-INSERT INTO city
-VALUES ('Зеленогорск', 3);
-INSERT INTO city
-VALUES ('Тула', 4);
-INSERT INTO city
-VALUES ('Волжский', 5);
-INSERT INTO city
-VALUES ('Пенза', 6);
-INSERT INTO city
-VALUES ('Красноярск', 7);
-INSERT INTO city
-VALUES ('Екатеринбург', 10);
-INSERT INTO city
-VALUES ('Брест', 13);
-INSERT INTO city
-VALUES ('Витебск', 14);
+INSERT INTO city (name, latitude, longitude, region_id)
+VALUES ('Москва', 55.7558, 37.6173, 0),
+('Санкт-Петербург', 59.9311, 30.3609, 1),
+('Киев', 50.4504, 30.5245, 2),
+('Казань', 55.7879, 49.1233, 3),
+('Новосибирск', 54.9833, 82.8964, 4),
+('Уфа', 54.7348, 55.9579, 5),
+('Екатеринбург', 56.8431, 60.6454, 6),
+('Нижний Новгород', 56.3269, 44.0059, 7),
+('Минск', 53.9006, 27.5590, 8),
+('Ярославль', 57.6261, 39.8845, 9),
+('Омск', 54.9914, 73.3645, 10);
