@@ -1,7 +1,6 @@
 import datetime
 import hashlib
-
-from psycopg2 import IntegrityError
+import uuid
 
 from sqlalchemy import select, update
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -28,7 +27,7 @@ async def get_user_by_username(session: AsyncSession, username):
 
 
 async def register_user(session: AsyncSession, dict: dict):
-    user = await session.execute(select(User).where(User.first_name == dict['first_name']))
+    user = await session.execute(select(User).where(User.email == dict['email']))
     if user.scalar() is not None:
         logger.info("User already exists")
         return None
@@ -37,23 +36,30 @@ async def register_user(session: AsyncSession, dict: dict):
         date_joined = datetime.datetime.now()
         hashed_password = hashlib.sha256(dict['password'].encode()).hexdigest()
         new_user = User(
-            username=dict['first_name'],
-            first_name='',
+            date_joined=date_joined,
+            username=str(uuid.uuid4()),
+            first_name=dict['first_name'],
             email=dict['email'],
             phone='',
             password=hashed_password,
+            city_id=0,
+            blood_group='',
+            is_email_verified='False',
+            is_phone_verified='False',
+            start_donor_year=date_joined.year,
+            donor_status=''
         )
         session.add(new_user)
         await session.commit()
-        # (await session.execute(select(User).where(User.name == dict['username']))).id
         return new_user.id
-    except IntegrityError:
-        session.rollback()
+    except Exception as e:
+        logger.error(e)
+        await session.rollback()
         return None
 
 
 async def login_user(session: AsyncSession, dict: dict):
-    user = await session.execute(select(User).where(User.username == dict['username']))
+    user = await session.execute(select(User).where(User.email == dict['username']))
     user = user.scalar()
     if user is not None and user.password == hashlib.sha256(dict['password'].encode()).hexdigest():
         return user
