@@ -14,7 +14,7 @@ const ChangeProfileSex = ({ field }: { field: fieldProp<'sex'> }) => {
 
   return (
     <FormItem>
-      <FormLabel>Выберите тип донации</FormLabel>
+      <FormLabel>Выберите пол</FormLabel>
       <FormControl>
         <RadioGroup onValueChange={field.onChange} defaultValue={field.value}>
           <div className='flex space-x-3'>

@@ -188,7 +188,7 @@ const ChangeProfile = () => {
             name='about'
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Username</FormLabel>
+                <FormLabel>О себе</FormLabel>
                 <FormControl>
                   <Textarea
                     className='my-0'
