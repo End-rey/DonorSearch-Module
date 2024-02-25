@@ -3,15 +3,16 @@ import logging
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
+from app.common.AuthUser import AuthUser
 
 from app.config import load_config
 from app.handlers.user_private import user_private_router
 from app.handlers.start import start_router
+from app.handlers.for_auth_handlers import auth_router
 from app.common.bot_cmds_list import private
 from app.database.engine import DB
 from app.logger import get_logger
 from app.middlewares.db import DatabaseMiddleware
-from app.database.engine import async_sessionmaker
 
 logger = get_logger()
 config = load_config(".env")
@@ -23,9 +24,9 @@ database = DB(config.db)
 dp = Dispatcher()
 dp.include_routers(
     start_router,
+    auth_router,
     user_private_router
 )
-
 
 async def on_startup(bot):
     await database.create_db()

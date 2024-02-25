@@ -1,5 +1,5 @@
-from sqlalchemy import Integer, String, Boolean
-from sqlalchemy.orm import Mapped, mapped_column
+from sqlalchemy import Float, Integer, String, Boolean, ForeignKey
+from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.database.models import Base
 
@@ -8,20 +8,30 @@ class City(Base):
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
-    region_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    latitude: Mapped[float] = mapped_column(Float, nullable=False)
+    longitude: Mapped[float] = mapped_column(Float, nullable=False)
+    region_id: Mapped[int] = mapped_column(Integer, ForeignKey("region.id"), nullable=False)
+    
+    region = relationship("Region", back_populates="cities")
+    bloodcentres = relationship("BloodCentre", back_populates="city")
 
 class Region(Base):
     __tablename__ = "region"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
-    country_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    country_id: Mapped[int] = mapped_column(Integer, ForeignKey("country.id"), nullable=False)
+    
+    cities = relationship("City", back_populates="region")
+    country = relationship("Country", back_populates="regions")
 
 class Country(Base):
     __tablename__ = "country"
 
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
+    
+    regions = relationship("Region", back_populates="country")
 
 class BloodCentre(Base):
     __tablename__ = "bloodcentre"
@@ -29,7 +39,7 @@ class BloodCentre(Base):
     id: Mapped[int] = mapped_column(Integer, primary_key=True, autoincrement=True)
     name: Mapped[str] = mapped_column(String, nullable=False)
     address: Mapped[str] = mapped_column(String, nullable=False)
-    city_id: Mapped[int] = mapped_column(Integer, nullable=False)
+    city_id: Mapped[int] = mapped_column(Integer, ForeignKey("city.id"), nullable=False)
     is_no_registration: Mapped[bool] = mapped_column(Boolean, nullable=False)
     is_typing: Mapped[bool] = mapped_column(Boolean, nullable=False)
     is_work_on_sat: Mapped[bool] = mapped_column(Boolean, nullable=False)
@@ -37,3 +47,5 @@ class BloodCentre(Base):
     schedule: Mapped[str] = mapped_column(String, nullable=False)
     phone_numbers: Mapped[str] = mapped_column(String, nullable=False)
     is_closed: Mapped[bool] = mapped_column(Boolean, nullable=False)
+    
+    city = relationship("City", back_populates="bloodcentres")
