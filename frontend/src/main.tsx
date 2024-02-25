@@ -4,7 +4,7 @@ import ProfilePage from '@/pages/ProfilePage';
 import RegisterEmailCodePage from '@/pages/RegisterEmailCodePage';
 import RegisterEmailPage from '@/pages/RegisterEmailPage';
 import RegisterPhonePage from '@/pages/RegisterPhonePage';
-import RegisterPhoneCodePage from '@/pages/RegisterPhonePage copy';
+import RegisterPhoneCodePage from '@/pages/RegisterPhoneCodePage';
 import Root from '@/pages/Root';
 import React from 'react';
 import ReactDOM from 'react-dom/client';

@@ -14,8 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
-import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
+import { registrationPhone } from '@/api/auth';
 
 const formSchema = z.object({
   phone: z
@@ -39,18 +39,17 @@ const formSchema = z.object({
     }),
 });
 export const RegisterPhone = () => {
-  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       phone: '+7',
       password: '',
-      username: '',
+      first_name: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    registrationPhone({ ...values, action: 'register_phone' });
   }
   return (
     <>
@@ -103,25 +102,21 @@ export const RegisterPhone = () => {
           />
           <FormField
             control={form.control}
-            name='username'
+            name='first_name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Имя пользователя
+                  Имя
                   <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='Имя пользователя' {...field} />
+                  <Input placeholder='Имя' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button
-            type='submit'
-            className='w-[100%]'
-            onClick={() => navigate('pin')}
-          >
+          <Button type='submit' className='w-[100%]'>
             Зарегистрироваться
           </Button>
         </form>
