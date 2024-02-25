@@ -1,7 +1,4 @@
 import WhereTurnCity from '@/components/Profile/WhereTurn/WhereTurnCity/WhereTurnCity.tsx';
-import * as React from 'react';
-import { Dot } from 'lucide-react';
-import { Button } from '@/components/ui/button.tsx';
 import WhereTurnCard from '@/components/Profile/WhereTurn/WhereTurnCard/WhereTurnCard.tsx';
 
 export const WhereTurn = () => {

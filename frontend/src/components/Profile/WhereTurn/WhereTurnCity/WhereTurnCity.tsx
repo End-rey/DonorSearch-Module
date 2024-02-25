@@ -19,24 +19,12 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 
 const frameworks = [
   {
-    value: 'next.js',
-    label: 'Next.js',
+    value: 'msc',
+    label: 'Москва',
   },
   {
-    value: 'sveltekit',
-    label: 'SvelteKit',
-  },
-  {
-    value: 'nuxt.js',
-    label: 'Nuxt.js',
-  },
-  {
-    value: 'remix',
-    label: 'Remix',
-  },
-  {
-    value: 'astro',
-    label: 'Astro',
+    value: 'spb',
+    label: 'Санкт-Петербург',
   },
 ];
 const WhereTurnCity = () => {
