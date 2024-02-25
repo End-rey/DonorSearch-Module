@@ -21,8 +21,8 @@ const formSchema = z.object({
   phone: z.string().min(1, {
     message: 'Поле обязательно к заполнению',
   }),
-  password: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
+  password: z.string().min(8, {
+    message: 'Пароль должен содержать минимум 8 символов',
   }),
   first_name: z.string().min(1, {
     message: 'Поле обязательно к заполнению',
@@ -96,11 +96,11 @@ export const RegisterPhone = () => {
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Имя пользователя
+                  Имя
                   <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='Имя пользователя' {...field} />
+                  <Input placeholder='Имя' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>

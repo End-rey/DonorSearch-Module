@@ -49,7 +49,7 @@ export const Login = () => {
             name='username'
             render={({ field }) => (
               <FormItem className='w-[100%]'>
-                <FormLabel>Email</FormLabel>
+                <FormLabel>Номер телефона или Email</FormLabel>
                 <FormControl>
                   <Input placeholder='Номер телефона или Email' {...field} />
                 </FormControl>
