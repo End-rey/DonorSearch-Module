@@ -20,16 +20,12 @@ const DonationPlace = ({ field }: { field: fieldProp<'donationPlace'> }) => {
         >
           <RadioButtonCard
             header={'Стационарный пункт'}
-            text={
-              'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
-            }
+            text={'Центр крови или станция переливания в вашем городе.'}
             value='station'
           />
           <RadioButtonCard
             header={'Выездная акция'}
-            text={
-              'Питание или компенсация питания бла бла бла бла или МРОТ и всё такое'
-            }
+            text={'День донора, выезды в ВУЗы, передвижные мобильные бригады.'}
             value='event'
           />
         </RadioGroup>
