@@ -44,7 +44,6 @@ const DonationDate = ({ field }: { field: fieldProp<'donationData'> }) => {
             mode='single'
             selected={field.value}
             onSelect={field.onChange}
-            disabled={(date: Date) => date < new Date()}
             initialFocus
           />
         </PopoverContent>
