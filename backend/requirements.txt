@@ -4,3 +4,4 @@ environs == 10.3.0
 redis == 5.0.1
 sqlalchemy == 2.0.27
 asyncpg == 0.29.0
+aiohttp_cors == 0.7.0

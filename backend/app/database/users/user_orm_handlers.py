@@ -2,7 +2,7 @@ import datetime
 import hashlib
 import uuid
 
-from sqlalchemy import select, update
+from sqlalchemy import select, update, or_
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.users.User import User
@@ -27,8 +27,15 @@ async def get_user_by_username(session: AsyncSession, username):
 
 
 async def register_user(session: AsyncSession, dict: dict):
-    user = await session.execute(select(User).where(User.email == dict['email']))
-    if user.scalar() is not None:
+    email = dict['email'] if 'email' in dict else ""
+    phone = dict['phone'] if 'phone' in dict else ""
+    if email == "":
+        query_param = User.phone == phone
+    else:
+        query_param = User.email == email
+    user = await session.execute(select(User).where(query_param))
+    user = user.scalar()
+    if user is not None:
         logger.info("User already exists")
         return None
 
@@ -39,8 +46,8 @@ async def register_user(session: AsyncSession, dict: dict):
             date_joined=date_joined,
             username=str(uuid.uuid4()),
             first_name=dict['first_name'],
-            email=dict['email'],
-            phone='',
+            email=email,
+            phone=phone,
             password=hashed_password,
             city_id=0,
             blood_group='',
@@ -59,7 +66,7 @@ async def register_user(session: AsyncSession, dict: dict):
 
 
 async def login_user(session: AsyncSession, dict: dict):
-    user = await session.execute(select(User).where(User.email == dict['username']))
+    user = await session.execute(select(User).where(or_(User.email == dict['username'], User.phone == dict['username'])))
     user = user.scalar()
     if user is not None and user.password == hashlib.sha256(dict['password'].encode()).hexdigest():
         return user

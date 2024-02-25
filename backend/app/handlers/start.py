@@ -33,10 +33,10 @@ async def webapp_auth_handler(message: types.Message, session: AsyncSession) -> 
         user = await login_user(session=session, dict=data)
         if user:
             auth_user.user_id = user.id
-            await message.answer(f"Добро пожаловать, {auth_user.user_id}!", reply_markup=keyboard_profile)
+            await message.answer(f"Добро пожаловать!", reply_markup=keyboard_profile)
         else:
             await message.answer("Неверные данные!", reply_markup=keyboard_login_register)
-    elif data['action'] == 'register':
+    elif data['action'].startswith('register'):
         user = await register_user(session=session, dict=data)
         if user:
             await message.answer("Регистрация прошла успешно!", reply_markup=keyboard_login_register)
