@@ -30,7 +30,7 @@ const formSchema = z.object({
       required_error: 'Пароль должен содержать минимум 8 символов',
     })
     .min(1),
-  username: z
+  first_name: z
     .string({
       required_error: 'Поле обязательно к заполнению',
     })
