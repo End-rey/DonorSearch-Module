@@ -14,9 +14,8 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
-import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
-import { registration } from '@/api/auth';
+import { registrationEmail } from '@/api/auth';
 
 const formSchema = z.object({
   email: z.string().min(1, {
@@ -30,7 +29,6 @@ const formSchema = z.object({
   }),
 });
 export const RegisterEmail = () => {
-  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -41,7 +39,7 @@ export const RegisterEmail = () => {
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    registration({ ...values, action: 'register' });
+    registrationEmail({ ...values, action: 'register_email' });
   }
   return (
     <>
