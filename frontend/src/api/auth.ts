@@ -1,5 +1,11 @@
-interface userRegData {
+interface userRegEmailData {
   email: string;
+  password: string;
+  first_name: string;
+  action: string;
+}
+interface userRegPhoneData {
+  phone: string;
   password: string;
   first_name: string;
   action: string;
@@ -45,7 +51,10 @@ interface setPasswordData {
 export function login(data: userLoginData) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
-export function registration(data: userRegData) {
+export function registrationEmail(data: userRegEmailData) {
+  Telegram.WebApp.sendData(JSON.stringify(data));
+}
+export function registrationPhone(data: userRegPhoneData) {
   Telegram.WebApp.sendData(JSON.stringify(data));
 }
 

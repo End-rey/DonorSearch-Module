@@ -33,7 +33,7 @@ const DonationDate = ({ field }: { field: fieldProp<'donationData'> }) => {
               {field.value ? (
                 format(field.value, 'PPP')
               ) : (
-                <span>Pick a date</span>
+                <span>Выберите дату</span>
               )}
               <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
             </Button>
@@ -44,7 +44,6 @@ const DonationDate = ({ field }: { field: fieldProp<'donationData'> }) => {
             mode='single'
             selected={field.value}
             onSelect={field.onChange}
-            disabled={(date: Date) => date < new Date()}
             initialFocus
           />
         </PopoverContent>

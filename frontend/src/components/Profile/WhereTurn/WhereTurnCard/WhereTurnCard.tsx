@@ -23,7 +23,6 @@ const FormSchema = z.object({
 const WhereTurnCard = () => {
   const [rh, setRh] = useState('');
   function handleRadioChange(value: string) {
-    console.log(value);
     setRh(value);
   }
 

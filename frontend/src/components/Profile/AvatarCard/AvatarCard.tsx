@@ -21,7 +21,6 @@ import { ChevronRight, ChevronUp } from 'lucide-react';
 import { useState } from 'react';
 import * as React from 'react';
 
-import { Button } from '@/components/ui/button.tsx';
 export const AvatarCard = () => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleAccordion = () => {
@@ -80,16 +79,6 @@ export const AvatarCard = () => {
                   </AccordionTrigger>
                 </div>
               </div>
-              {isOpen ? (
-                ''
-              ) : (
-                <Button
-                  variant={'default'}
-                  className='mt-4 rounded-xl text-base font-semibold'
-                >
-                  Добавить донацию
-                </Button>
-              )}
               {isOpen ? (
                 <div className='flex items-end justify-between'>
                   <p className='h-[25px] rounded-3xl bg-red-300 px-3 py-1 text-xs'>

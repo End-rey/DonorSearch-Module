@@ -56,15 +56,15 @@ const DonationCenter = ({
             >
               {field.value
                 ? centers.find((center) => center.value === field.value)?.label
-                : 'Выберите город'}
+                : 'Выберите центр'}
               <ChevronsUpDown className='ml-2 h-4 w-4 shrink-0 opacity-50' />
             </Button>
           </FormControl>
         </PopoverTrigger>
         <PopoverContent className='w-[200px] p-0'>
           <Command>
-            <CommandInput placeholder='Выберите город...' />
-            <CommandEmpty>Город не найден.</CommandEmpty>
+            <CommandInput placeholder='Выберите центр...' />
+            <CommandEmpty>Центр не найден.</CommandEmpty>
             <CommandGroup>
               {centers.map((center) => (
                 <CommandItem

@@ -13,7 +13,7 @@ import ChangeProfile from '@/components/Profile/ChangeProfile/ChangeProfile';
 export const Profile = () => {
   return (
     <Tabs
-      defaultValue='account'
+      defaultValue='profile'
       className='my-3 flex w-full flex-col items-center rounded-3xl'
     >
       <TabsList className='justify-start bg-transparent'>

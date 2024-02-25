@@ -14,33 +14,42 @@ import {
 } from '@/components/ui/form';
 import { Input } from '@/components/ui/input';
 import { SupportLine } from '@/components/Authorization/SupportLine/SupportLine.tsx';
-import { useNavigate } from 'react-router-dom';
 import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
+import { registrationPhone } from '@/api/auth';
 
 const formSchema = z.object({
-  phone: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
-  password: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
-  username: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
+  phone: z
+    .string({
+      required_error: 'Поле обязательно к заполнению',
+    })
+    .min(1, {
+      message: 'Поле обязательно к заполнению',
+    }),
+  password: z
+    .string({
+      required_error: 'Пароль должен содержать минимум 8 символов',
+    })
+    .min(1),
+  first_name: z
+    .string({
+      required_error: 'Поле обязательно к заполнению',
+    })
+    .min(1, {
+      message: 'Поле обязательно к заполнению',
+    }),
 });
 export const RegisterPhone = () => {
-  const navigate = useNavigate();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       phone: '+7',
       password: '',
-      username: '',
+      first_name: '',
     },
   });
 
   function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
+    registrationPhone({ ...values, action: 'register_phone' });
   }
   return (
     <>
@@ -48,7 +57,7 @@ export const RegisterPhone = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='w-[100%] space-y-4'
+          className='mb-4 w-[100%] space-y-4'
         >
           <h3 className='text-2xl font-medium'>
             Регистрация по номеру телефона
@@ -93,25 +102,21 @@ export const RegisterPhone = () => {
           />
           <FormField
             control={form.control}
-            name='username'
+            name='first_name'
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  Имя пользователя
+                  Имя
                   <span className='text-sm text-redMain'>*</span>
                 </FormLabel>
                 <FormControl>
-                  <Input placeholder='Имя пользователя' {...field} />
+                  <Input placeholder='Имя' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button
-            type='submit'
-            className='w-[100%]'
-            onClick={() => navigate('pin')}
-          >
+          <Button type='submit' className='w-[100%]'>
             Зарегистрироваться
           </Button>
         </form>

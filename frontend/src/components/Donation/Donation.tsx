@@ -42,7 +42,7 @@ const formSchema = z
     donationType: z.enum(['blood', 'plasma', 'trombs', 'erits', 'granuls'], {
       required_error: 'Выберите тип донации',
     }),
-    donationData: z.date({ required_error: 'Выберите дату' }).min(new Date()),
+    donationData: z.date({ required_error: 'Выберите дату' }),
     donationPrice: z.enum(['free', 'money'], {
       required_error: 'Выберите тип донации',
     }),
