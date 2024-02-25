@@ -33,7 +33,7 @@ const DonationDate = ({ field }: { field: fieldProp<'donationData'> }) => {
               {field.value ? (
                 format(field.value, 'PPP')
               ) : (
-                <span>Pick a date</span>
+                <span>Выберите дату</span>
               )}
               <CalendarIcon className='ml-auto h-4 w-4 opacity-50' />
             </Button>

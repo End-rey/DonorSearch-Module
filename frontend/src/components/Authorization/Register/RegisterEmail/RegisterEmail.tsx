@@ -19,15 +19,28 @@ import BackButton from '@/components/Authorization/BackButton/BackButton.tsx';
 import { registration } from '@/api/auth';
 
 const formSchema = z.object({
-  email: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
-  password: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
-  first_name: z.string().min(1, {
-    message: 'Поле обязательно к заполнению',
-  }),
+  email: z
+    .string({
+      required_error: 'Укажите имя',
+    })
+    .min(1, {
+      message: 'Поле обязательно к заполнению',
+    }),
+  password: z
+    .string({
+      required_error: 'Пароль должен содержать минимум 8 символов',
+    })
+
+    .min(1, {
+      message: 'Поле обязательно к заполнению',
+    }),
+  first_name: z
+    .string({
+      required_error: 'Поле обязательно к заполнению',
+    })
+    .min(1, {
+      message: 'Поле обязательно к заполнению',
+    }),
 });
 export const RegisterEmail = () => {
   const navigate = useNavigate();
@@ -49,7 +62,7 @@ export const RegisterEmail = () => {
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}
-          className='w-[100%] space-y-4'
+          className='mb-4 w-[100%] space-y-4'
         >
           <h3 className='text-2xl font-medium'>Регистрация по Email</h3>
           <FormField
@@ -107,7 +120,6 @@ export const RegisterEmail = () => {
           </Button>
         </form>
       </Form>
-
       <SupportLine />
     </>
   );
