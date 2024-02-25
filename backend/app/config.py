@@ -7,6 +7,7 @@ from typing import List
 class TgBot:
     token: str
     admin_id: List[int]
+    back_host: str
 
 
 @dataclass
@@ -15,6 +16,7 @@ class DbConfig:
     password: str
     user: str
     database: str
+    insert_data: bool = False
 
 
 @dataclass
@@ -35,12 +37,14 @@ def load_config(path: str = None):
         tg_bot = TgBot(
             token=env.str("BOT_TOKEN"),
             admin_id=list(map(int, env.list("ADMINS"))),
+            back_host=env.str("BACK_URL")
         ),
         db=DbConfig(
             url=env.str("DB_URL"),
             password=env.str("DB_PASS"),
             user=env.str("DB_USER"),
             database=env.str("DB_NAME"),
+            insert_data=env.bool("INSERT_DATA"),
         ),
         misc=Miscellaneous()
     )

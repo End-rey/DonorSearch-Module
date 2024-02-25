@@ -13,17 +13,23 @@ web_up_donation = types.WebAppInfo(
     url="https://end-rey.github.io/DonorSearch-Module/"
 )
 
-keyboard_profile = get_reply_keyboard("Профиль", 
-                                      "Запланировать донацию", 
+web_app_notification = types.WebAppInfo(
+    url="https://end-rey.github.io/DonorSearch-Module/notification"
+)
+
+keyboard_profile = get_reply_keyboard("Профиль",
+                                      "Добавить донацию",
+                                      "Напоминание о донации",
+                                      "Мои напоминания",
                                       "Список центров сдачи крови",
                                       "Мои донации",
                                       "Выйти",
                                       web_app={
-                                        0: web_up_profile,
-                                        1: web_up_donation
-                                      }, sizes=(2,2))
+                                          0: web_up_profile,
+                                          1: web_up_donation,
+                                          2: web_app_notification
+                                      }, sizes=(3, 3))
 
 
 keyboard_login_register = get_reply_keyboard(
-    "Вход / Регистрация", web_app={0: web_app_auth}, sizes=(1,))
-
+    "Вход / Регистрация", "Список центров сдачи крови", web_app={0: web_app_auth}, sizes=(1,))

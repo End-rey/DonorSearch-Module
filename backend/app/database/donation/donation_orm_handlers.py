@@ -22,6 +22,13 @@ async def get_donations_by_user_id(session: AsyncSession, user_id: int) -> list[
     donation = result.scalars().all()
     return donation
 
+async def get_donations_from_now(session: AsyncSession, user_id: int) -> list[Donation]:
+    donations = await session.execute(select(Donation)
+                                      .filter(Donation.date >= datetime.now().date())
+                                      .filter(Donation.user_id == user_id))
+                                    
+    return donations.scalars().all()
+
 
 async def add_donation(session: AsyncSession, dict: dict):
     try:

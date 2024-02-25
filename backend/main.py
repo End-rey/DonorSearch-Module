@@ -3,7 +3,6 @@ import logging
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
-from app.common.AuthUser import AuthUser
 
 from app.config import load_config
 from app.handlers.user_private import user_private_router
@@ -30,6 +29,8 @@ dp.include_routers(
 
 async def on_startup(bot):
     await database.create_db()
+    if config.db.insert_data:
+        await database.execute_sql_files_in_directory("./data")
     await bot.delete_webhook(drop_pending_updates=True)
     await bot.set_my_commands(commands=private, scope=types.BotCommandScopeAllPrivateChats())
 
