@@ -64,7 +64,7 @@ export const Login = () => {
               <FormItem className='w-[100%]'>
                 <FormLabel>Пароль</FormLabel>
                 <FormControl>
-                  <Input placeholder='Пароль' {...field} />
+                  <Input placeholder='Пароль' type='password' {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
