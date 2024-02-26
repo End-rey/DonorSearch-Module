@@ -43,6 +43,7 @@ async def register_user(session: AsyncSession, dict: dict):
         date_joined = datetime.datetime.now()
         hashed_password = hashlib.sha256(dict['password'].encode()).hexdigest()
         new_user = User(
+            # id = dict['user_id'],
             date_joined=date_joined,
             username=str(uuid.uuid4()),
             first_name=dict['first_name'],

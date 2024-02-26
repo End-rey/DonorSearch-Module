@@ -17,6 +17,10 @@ class DbConfig:
     user: str
     database: str
     insert_data: bool = False
+    
+@dataclass
+class RedisConfig:
+    url: str
 
 
 @dataclass
@@ -27,6 +31,7 @@ class Miscellaneous:
 class Config:
     tg_bot: TgBot
     db: DbConfig
+    redis: RedisConfig
     misc: Miscellaneous
 
 def load_config(path: str = None):
@@ -46,5 +51,6 @@ def load_config(path: str = None):
             database=env.str("DB_NAME"),
             insert_data=env.bool("INSERT_DATA"),
         ),
+        redis=RedisConfig(url=env.str("REDIS_URL")),
         misc=Miscellaneous()
     )

@@ -1,5 +1,3 @@
-import os
-
 import aiohttp_cors
 from aiohttp import web
 
@@ -7,18 +5,7 @@ from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.webhook.aiohttp_server import SimpleRequestHandler, setup_application
 
-from aiogram.filters import CommandStart
-from dotenv import load_dotenv
-load_dotenv()
-
 from web_app import routes as webapp_routes
-
-
-import asyncio
-import logging
-
-from aiogram import Bot, Dispatcher, types
-from aiogram.enums import ParseMode
 
 from app.config import load_config
 from app.handlers.user_private import user_private_router
