@@ -6,33 +6,31 @@ from aiogram.fsm.state import StatesGroup, State
 from aiogram.fsm.context import FSMContext
 
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.common.AuthUser import AuthUser
 
 from app.database.users.user_orm_handlers import login_user, register_user
 from app.filters.auth_filter import isAuth
 from app.common.keyboards import keyboard_profile, keyboard_login_register
+from app.filters.what_webapp import whatWebApp
+from app.common.AuthUser import AuthUser
 
-auth_user = AuthUser()
+users = AuthUser()
 
 start_router = Router()
 
-@start_router.message(CommandStart(), isAuth())
-async def command_start_handler(message: types.Message) -> None:
-    await message.answer(f"Ты уже вошел, {auth_user.user_id}!", reply_markup=keyboard_profile)
-
-
 @start_router.message(CommandStart())
-async def command_start_without_handler(message: types.Message) -> None:
+async def command_start_without_handler(message: types.Message, state: FSMContext) -> None:
+    await state.update_data({'keyboard': 'register'})
     await message.answer(f"Зарегистрируйся или войди в свой аккаунт!", reply_markup=keyboard_login_register)
 
 
-@start_router.message(F.content_type == "web_app_data", ~isAuth())
-async def webapp_auth_handler(message: types.Message, session: AsyncSession) -> None:
+@start_router.message(F.content_type == "web_app_data", whatWebApp("Вход / Регистрация"))
+async def webapp_auth_handler(message: types.Message, session: AsyncSession, state: FSMContext) -> None:
     data = json.loads(message.web_app_data.data)
     if data['action'] == 'login':
         user = await login_user(session=session, dict=data)
         if user:
-            auth_user.user_id = user.id
+            users.users.update({message.from_user.id: user.id})
+            await state.update_data({'keyboard': 'profile'})
             await message.answer(f"Добро пожаловать!", reply_markup=keyboard_profile)
         else:
             await message.answer("Неверные данные!", reply_markup=keyboard_login_register)
