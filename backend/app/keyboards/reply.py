@@ -14,7 +14,7 @@ def get_reply_keyboard(
     
     for index, text in enumerate(btns, start=0):
         
-        if reqest_location and index == reqest_location:
+        if reqest_location is not None and index == reqest_location:
             keyboard.add(types.KeyboardButton(text=text, request_location=True))
         elif web_app and index in web_app.keys():
             keyboard.add(types.KeyboardButton(text=text, web_app=web_app[index]))

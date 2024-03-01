@@ -45,7 +45,7 @@ async def my_notifications_handler(message: types.Message, session: AsyncSession
     donations = await donation_orm_handlers.get_donations_from_now(session, user_id=users.users.get(message.from_user.id))
     if donations:
         for donation in donations:
-            await message.answer(f"Запланировано на {donation.date}, здача {donation.donation_type_id.name}", reply_markup=keyboard_profile)
+            await message.answer(f"Запланировано на {donation.date}, cдача {donation.donation_type_id.name}", reply_markup=keyboard_profile)
     else:
         await message.answer("Что-то пошло не так =(, повторите позже", reply_markup=keyboard_profile)
 
@@ -55,7 +55,7 @@ async def my_donation_handler(message: types.Message, session: AsyncSession) -> 
     donations = await donation_orm_handlers.get_donations_by_user_id(session, user_id=users.users.get(message.from_user.id))
     if donations:
         for donation in donations:
-            await message.answer(f"Запланировано на {donation.date}, cдача {donation.donation_type_id.name}", reply_markup=keyboard_profile)
+            await message.answer(f"{donation.date}, cдача {donation.donation_type_id.name}", reply_markup=keyboard_profile)
     else:
         await message.answer("Что-то пошло не так =(, повторите позже", reply_markup=keyboard_profile)
 

@@ -4,8 +4,9 @@ import logging
 from aiogram import Bot, Dispatcher, types
 from aiogram.enums import ParseMode
 from aiogram.fsm.storage.redis import RedisStorage
+from aiogram.fsm.storage.memory import MemoryStorage
 
-from app.config import load_config
+from app.config import load_config, load_config_with_os
 from app.handlers.user_private import user_private_router
 from app.handlers.start import start_router
 from app.handlers.for_auth_handlers import auth_router
@@ -17,17 +18,20 @@ from app.middlewares.db import DatabaseMiddleware
 # from app.redis.engine import RedisConnection
 
 logger = get_logger()
-config = load_config(".env")
+# config = load_config(".env")
+config = load_config_with_os()
 
 bot = Bot(token=config.tg_bot.token, parse_mode=ParseMode.HTML)
 
 database = DB(config.db)
-redis_storage = RedisStorage.from_url(config.redis.url)
+storage = MemoryStorage()
+if config.redis.url:
+    storage = RedisStorage.from_url(config.redis.url)
 
-dp = Dispatcher(storage=redis_storage)
+dp = Dispatcher(storage=storage)
 dp.include_routers(
-    start_router,
     auth_router,
+    start_router,
     user_private_router
 )
 
