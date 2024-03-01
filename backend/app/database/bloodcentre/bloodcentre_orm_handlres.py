@@ -1,5 +1,5 @@
 from datetime import datetime
-from sqlalchemy import func, select, update
+from sqlalchemy import desc, func, select, update
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.database.bloodcentre.Bloodcentre import BloodCentre, Country, City, Region
@@ -60,7 +60,7 @@ async def delete_blood_centre(session: AsyncSession, centre_id: int):
 
 
 async def get_city_by_name(session: AsyncSession, city_name: str):
-    stmt = select(City).filter(City.name == city_name.capitalize())
+    stmt = select(City).filter(func.lower(City.name) == city_name.lower())
     result = await session.execute(stmt)
     return result.scalars().first()
 
@@ -72,7 +72,7 @@ async def get_city_by_coordinates(session: AsyncSession, latitude: float, longit
             func.pow(func.radians(latitude) - func.radians(City.latitude), 2) +
             func.pow(func.radians(longitude) - func.radians(City.longitude), 2)
         ).label("distance")
-    ).order_by("distance")
+    ).order_by(desc("distance"))
     result = await session.execute(stmt)
     nearest_city = result.scalars().first()
     return nearest_city

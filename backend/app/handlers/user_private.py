@@ -12,9 +12,9 @@ from app.common import keyboards
 user_private_router = Router()
 
 keyboard_location = get_reply_keyboard(
-    "Указать город", "Дать свое местоположение", reqest_location=1, sizes=(2,))
+    "Дать свое местоположение", "Отмена", reqest_location=0, sizes=(1,1))
 
-keyboard_back = get_reply_keyboard("Отмена", sizes=(2,))
+# keyboard_back = get_reply_keyboard("Отмена", sizes=(2,))
 
 class City(StatesGroup):
     select_city = State()
@@ -25,30 +25,10 @@ async def bloodcentres_handler(message: types.Message, state: FSMContext) -> Non
     await message.answer("Укажите город или свой местоположение", reply_markup=keyboard_location)
     await state.set_state(City.select_city)
 
-
-@user_private_router.message(F.text == "Указать город", City.select_city)
-async def set_city_handler(message: types.Message, state: FSMContext) -> None:
-    await message.answer("Пожалуйста, выберите свой город", reply_markup=keyboard_back)
-    await state.set_state(City.waiting_for_city)
-
-@user_private_router.message(F.text == "Отмена", City.waiting_for_city)
-async def back_handler(message: types.Message, state: FSMContext) -> None:
-    state_keyboard = "" if 'keyboard' not in (await state.get_data()) else (await state.get_data())['keyboard']
-    reply_murkup = keyboards.keyboard_profile if (state_keyboard == "profile") else keyboards.keyboard_login_register
-    await message.answer("Отменено", reply_markup=reply_murkup)
-    await state.clear()
-
-@user_private_router.message(City.waiting_for_city)
-async def handle_city(message: types.Message, session: AsyncSession, state: FSMContext) -> None:
-    city = await bloodcentre_orm_handlres.get_city_by_name(session, message.text)
-    if city:
-        await message.answer(f"Ваш город: {city.name}", reply_markup=types.ReplyKeyboardRemove())
-        await bloodcentres(message, session, state, city_id=city.id)
-        await state.clear()
-    else:
-        await message.answer("Такого города не нашли =(", reply_markup=keyboard_back)
-        await state.set_state(City.waiting_for_city)
-        
+# @user_private_router.message(F.text == "Указать город", City.select_city)
+# async def set_city_handler(message: types.Message, state: FSMContext) -> None:
+#     await message.answer("Пожалуйста, выберите свой город", reply_markup=keyboard_back)
+#     await state.set_state(City.waiting_for_city)
 
 @user_private_router.message(F.content_type == types.ContentType.LOCATION, City.select_city)
 async def handle_location(message: types.Message, session: AsyncSession, state: FSMContext) -> None:
@@ -63,6 +43,26 @@ async def handle_location(message: types.Message, session: AsyncSession, state: 
     else:
         await message.answer("Не получилось =(, повторите позже", reply_markup=reply_murkup)
     await state.clear()
+
+@user_private_router.message(F.text == "Отмена", City.select_city)
+async def back_handler(message: types.Message, state: FSMContext) -> None:
+    state_keyboard = "" if 'keyboard' not in (await state.get_data()) else (await state.get_data())['keyboard']
+    reply_murkup = keyboards.keyboard_profile if (state_keyboard == "profile") else keyboards.keyboard_login_register
+    await message.answer("Отменено", reply_markup=reply_murkup)
+    await state.clear()
+
+@user_private_router.message(City.select_city)
+async def handle_city(message: types.Message, session: AsyncSession, state: FSMContext) -> None:
+    city = await bloodcentre_orm_handlres.get_city_by_name(session, message.text)
+    if city:
+        await message.answer(f"Ваш город: {city.name}", reply_markup=types.ReplyKeyboardRemove())
+        await bloodcentres(message, session, state, city_id=city.id)
+        await state.clear()
+    else:
+        await message.answer("Такого города не нашли =(", reply_markup=keyboard_location)
+        await state.set_state(City.select_city)
+        
+
 
 async def bloodcentres(message: types.Message, session: AsyncSession, state: FSMContext, city_id: int):
     bloodcentres = await bloodcentre_orm_handlres.get_blood_centres_by_city(session, city_id=city_id)
